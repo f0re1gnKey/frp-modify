@@ -77,6 +77,12 @@ func NewUDPProxy(baseProxy *BaseProxy) Proxy {
 
 func (pxy *UDPProxy) Run() (remoteAddr string, err error) {
 	xl := pxy.xl
+
+	bindAddr := pxy.cfg.RemoteAddr
+	if bindAddr == "" {
+		bindAddr = pxy.serverCfg.ProxyBindAddr
+	}
+
 	pxy.realBindPort, err = pxy.rc.UDPPortManager.Acquire(pxy.name, pxy.cfg.RemotePort)
 	if err != nil {
 		return "", fmt.Errorf("acquire port %d error: %v", pxy.cfg.RemotePort, err)
@@ -89,7 +95,7 @@ func (pxy *UDPProxy) Run() (remoteAddr string, err error) {
 
 	remoteAddr = fmt.Sprintf(":%d", pxy.realBindPort)
 	pxy.cfg.RemotePort = pxy.realBindPort
-	addr, errRet := net.ResolveUDPAddr("udp", net.JoinHostPort(pxy.serverCfg.ProxyBindAddr, strconv.Itoa(pxy.realBindPort)))
+	addr, errRet := net.ResolveUDPAddr("udp", net.JoinHostPort(bindAddr, strconv.Itoa(pxy.realBindPort)))
 	if errRet != nil {
 		err = errRet
 		return
@@ -100,7 +106,7 @@ func (pxy *UDPProxy) Run() (remoteAddr string, err error) {
 		xl.Warnf("listen udp port error: %v", err)
 		return
 	}
-	xl.Infof("udp proxy listen port [%d]", pxy.cfg.RemotePort)
+	xl.Infof("udp proxy [%s] listen port [%d]", bindAddr, pxy.cfg.RemotePort)
 
 	pxy.udpConn = udpConn
 	pxy.sendCh = make(chan *msg.UDPPacket, 1024)
