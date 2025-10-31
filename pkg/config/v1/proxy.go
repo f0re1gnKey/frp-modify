@@ -253,21 +253,21 @@ var _ ProxyConfigurer = &TCPProxyConfig{}
 type TCPProxyConfig struct {
 	ProxyBaseConfig
 
-	remoteIP   string `json:"remoteIP,omitempty"`
+	RemoteIP   string `json:"remoteIP,omitempty"`
 	RemotePort int    `json:"remotePort,omitempty"`
 }
 
 func (c *TCPProxyConfig) MarshalToMsg(m *msg.NewProxy) {
 	c.ProxyBaseConfig.MarshalToMsg(m)
 
-	m.remoteIP = c.remoteIP
+	m.RemoteIP = c.RemoteIP
 	m.RemotePort = c.RemotePort
 }
 
 func (c *TCPProxyConfig) UnmarshalFromMsg(m *msg.NewProxy) {
 	c.ProxyBaseConfig.UnmarshalFromMsg(m)
 
-	c.remoteIP = m.remoteIP
+	c.RemoteIP = m.RemoteIP
 	c.RemotePort = m.RemotePort
 }
 
@@ -276,21 +276,21 @@ var _ ProxyConfigurer = &UDPProxyConfig{}
 type UDPProxyConfig struct {
 	ProxyBaseConfig
 
-	remoteIP   string `json:"remoteIP,omitempty"`
+	RemoteIP   string `json:"remoteIP,omitempty"`
 	RemotePort int    `json:"remotePort,omitempty"`
 }
 
 func (c *UDPProxyConfig) MarshalToMsg(m *msg.NewProxy) {
 	c.ProxyBaseConfig.MarshalToMsg(m)
 
-	m.remoteIP = c.remoteIP
+	m.RemoteIP = c.RemoteIP
 	m.RemotePort = c.RemotePort
 }
 
 func (c *UDPProxyConfig) UnmarshalFromMsg(m *msg.NewProxy) {
 	c.ProxyBaseConfig.UnmarshalFromMsg(m)
 
-	c.remoteIP = m.remoteIP
+	c.RemoteIP = m.RemoteIP
 	c.RemotePort = m.RemotePort
 }
 
