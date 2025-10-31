@@ -253,7 +253,7 @@ var _ ProxyConfigurer = &TCPProxyConfig{}
 type TCPProxyConfig struct {
 	ProxyBaseConfig
 
-	remoteIP string `json:"remoteIP,omitempty"`
+	remoteIP   string `json:"remoteIP,omitempty"`
 	RemotePort int    `json:"remotePort,omitempty"`
 }
 
@@ -276,7 +276,7 @@ var _ ProxyConfigurer = &UDPProxyConfig{}
 type UDPProxyConfig struct {
 	ProxyBaseConfig
 
-	remoteIP string `json:"remoteIP,omitempty"`
+	remoteIP   string `json:"remoteIP,omitempty"`
 	RemotePort int    `json:"remotePort,omitempty"`
 }
 
