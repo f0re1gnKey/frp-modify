@@ -1,3 +1,8 @@
+个人修改版本，支持指定远程服务器绑定的IP
+在TCP或UDP模块下添加字段RemoteIP即可
+
+This is a modified version that supports specifying the IP address to bind to a remote server. Simply add the RemoteIP field under the TCP or UDP module.
+
 # frp
 
 [![Build Status](https://circleci.com/gh/fatedier/frp.svg?style=shield)](https://circleci.com/gh/fatedier/frp)
