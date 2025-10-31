@@ -110,8 +110,8 @@ type NewProxy struct {
 	Metas              map[string]string `json:"metas,omitempty"`
 	Annotations        map[string]string `json:"annotations,omitempty"`
 
-	// tcp and udp only
-	RemoteAddr string `json:"remote_addr,omitempty"`
+	// tcp and udp only (modify)
+	RemoteIP   string `json:"remote_ip,omitempty"`
 	RemotePort int    `json:"remote_port,omitempty"`
 
 	// http and https only
